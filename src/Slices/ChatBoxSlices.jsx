@@ -32,7 +32,7 @@ export const postChat = createAsyncThunk(
       const aiReply =
         response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
         "No response";
-        console.log(aiReply,chatData)
+      //   console.log(aiReply,chatData)
         return {
             user: { text: chatData, status: "user" },
             ai: { text: aiReply, status: "ai" },

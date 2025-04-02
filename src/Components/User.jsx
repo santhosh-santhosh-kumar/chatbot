@@ -27,9 +27,9 @@ const User = () => {
   });
   return (
     <div>
-      <div className="w-96 rounded-t-lg  shadow-xl">
+      <div className="w-96 lg:rounded-t-lg  shadow-xl">
         <div className="">
-          <div className="bg-violet-600 flex justify-between px-2 py-4 text-white text-2xl rounded-t-lg">
+          <div className="bg-violet-600 flex justify-between lg:px-2 px-4 py-4 text-white text-2xl lg:rounded-t-lg ">
             <p className="font-bold">Chatbot</p>
             <FaRocketchat />
           </div>
@@ -68,6 +68,7 @@ const User = () => {
             <textarea
               type="text"
               name="text"
+              rows="1"
               value={formik.values.text}
               placeholder="Message..."
               onChange={(e) => {
@@ -75,7 +76,7 @@ const User = () => {
                 e.target.style.height = "auto";
                 e.target.style.height = `${e.target.scrollHeight}px`;
               }}
-              className="border  flex items-center justify-end w-full pl-2 text-xl resize-none overflow-hidden rounded-lg"
+              className="border  flex items-center justify-end w-full pl-2 py-3 text-xl resize-none overflow-hidden rounded-lg"
             />
             <div className="flex justify-center items-center bg-violet-600 text-white  rounded-lg">
               <button type="submit" className="text-xl p-4 ">

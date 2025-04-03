@@ -9,14 +9,23 @@ import { FaPause } from "react-icons/fa6";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { RiChatSmile3Line } from "react-icons/ri";
+import { AiOutlineAudio } from "react-icons/ai";
+import { AiOutlineAudioMuted } from "react-icons/ai";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 const User = () => {
   const dispatch = useDispatch();
   const chatContainerRef = useRef(null);
-
+  const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const messageDetails = useSelector(chatDetails);
   console.log(messageDetails);
+  const [audioFile, setAudioFile] = useState(null);
   const [ismode,setIsMode]=useState(false)
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioURL, setAudioURL] = useState(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
+  const [send,setSend]=useState(false)
   const formik = useFormik({
     initialValues: {
       text: "",
@@ -29,7 +38,10 @@ const User = () => {
       return errors;
     },
     onSubmit: (values) => {
+    
       dispatch(postChat(values.text));
+      setSend(false)
+      
       formik.resetForm();
     },
   });
@@ -47,7 +59,7 @@ const User = () => {
     if (!isPlaying) {
       localStorage.removeItem("playingId");
       window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(value);
+      const voice=window.speechSynthesis.getVoices();
       setIsPlaying(id);
     } else {
       window.speechSynthesis.cancel();
@@ -62,6 +74,11 @@ const User = () => {
     }
   }, [messageDetails]);
 
+const handleSend=async ()=>{
+  dispatch(postChat(transcript));
+  resetTranscript();
+  setSend(false)
+}
   
   return (
     <div>
@@ -156,13 +173,33 @@ const User = () => {
               }}
               className="border  flex items-center justify-end w-full pl-2 py-3 text-xl resize-none overflow-hidden rounded-lg"
             />
-            <div className={`${ismode ? "text-black" : "text-white"} text-3xl  flex justify-center items-center bg-violet-600  rounded-lg`}>
+        <div className="flex justify-center gap-4">
+        <div
+              onClick={() => {
+                (listening ? SpeechRecognition.stopListening() : SpeechRecognition.startListening({ continuous: true }))
+                setSend(true)
+              }}
+              className="p-3 bg-blue-500 text-white rounded-lg flex items-center gap-2"
+            >
+              <AiOutlineAudio size={25} className={`${listening ? "block" :"hidden"}`} />
+              <AiOutlineAudioMuted size={25} className={`${listening ? "hidden" :"block"}`} />
+
+        
+            </div>
+            <div className={`${ismode ? "text-black" : "text-white"} ${send ? "block" : "hidden"} text-3xl  flex justify-center items-center bg-violet-600  rounded-lg cursor-pointer`}>
+              <p  className="text-xl p-4 " onClick={()=>handleSend(transcript)}>
+                <IoSend />
+              </p>
+            </div>
+    
+      
+        </div>
+            <div className={`${ismode ? "text-black" : "text-white"} ${send ? "hidden" : "block"} text-3xl  flex justify-center items-center bg-violet-600  rounded-lg`}>
               <button type="submit" className="text-xl p-4 ">
                 <IoSend />
               </button>
             </div>
           </div>
-          <p className="text-red-500">{formik.errors.text}</p>
         </form>
       </div>
     </div>

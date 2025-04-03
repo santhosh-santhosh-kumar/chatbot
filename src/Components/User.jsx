@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { chatDetails, postChat } from "../Slices/ChatBoxSlices";
 import { FaRocketchat } from "react-icons/fa";
@@ -9,6 +9,8 @@ import { FaPause } from "react-icons/fa6";
 
 const User = () => {
   const dispatch = useDispatch();
+  const chatContainerRef = useRef(null);
+  
   const messageDetails = useSelector(chatDetails);
   console.log(messageDetails);
   const formik = useFormik({
@@ -46,7 +48,12 @@ const User = () => {
       setIsPlaying("")
     }
   };
-
+  
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messageDetails]);
   return (
     <div>
       <div className="w-96  lg:rounded-t-lg  shadow-xl">
@@ -56,7 +63,7 @@ const User = () => {
             <FaRocketchat />
           </div>
 
-          <div className="py-4 lg:h-96 h-[540px] overflow-auto">
+          <div   ref={chatContainerRef} className="py-4 lg:h-96 h-[540px] overflow-auto">
             {messageDetails.map((value) => {
               return (
                 <>

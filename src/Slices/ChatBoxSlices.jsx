@@ -5,7 +5,7 @@ const API_URL = import.meta.env.VITE_API_URI;
 
 console.log(API_URL);
 const initialState = {
-  messages: [{ text: "Hey there! How can I assist you?", status: "ai" }],
+  messages: [{ text: "Hey there! How can I assist you?", status: "ai" ,id:1}],
   status: "idle",
   error: null,
 };

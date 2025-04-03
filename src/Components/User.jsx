@@ -8,6 +8,7 @@ import { FaPlay } from "react-icons/fa6";
 import { FaPause } from "react-icons/fa6";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
+import { RiChatSmile3Line } from "react-icons/ri";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const User = () => {
     localStorage.getItem("playingId") || ""
   );
   const handlePlay = (text, id) => {
+    console.log(text,id,isPlaying)
     const value = new SpeechSynthesisUtterance(text);
     value.onend = () => {
       setIsPlaying("");
@@ -63,7 +65,7 @@ const User = () => {
   
   return (
     <div>
-      <div className="w-96  lg:rounded-t-lg  shadow-xl lg:mt-10">
+      <div className="lg:w-[600px]  lg:rounded-t-lg  shadow-xl lg:mt-10">
         <div className="">
           <div className="flex justify-between items-center bg-violet-600 px-4">
             <div className={`${ismode ? "text-gray-800" :"text-white"} bg-violet-600 flex items-center gap-4 lg:px-2  py-4 text-white text-2xl lg:rounded-t-lg`}>
@@ -90,18 +92,26 @@ const User = () => {
                   <div className="">
                     <div className={`px-4 flex gap-2 ${
                             value.status == "user"
-                              ? "flex-row-reverse justify-end "
+                              ? "flex-row-reverse  "
                               : "flex justify-start "
                           } inline-block  items-center mt-6`} >
                       <p
-                        className={` p-2 w-auto rounded-lg text-lg text-gray-700 ${
+                        className={`flex items-center gap-4 px-4 py-2 w-auto rounded-lg text-lg  ${
                           value.status == "user"
-                            ? " bg-slate-500"
-                            : " bg-gray-200"
+                            ? " bg-violet-600 text-white"
+                            : " bg-gray-100 text-gray-700"
                         }`}
                       >
+                        <p className={`${
+                            value.status == "user"
+                              ? "hidden"
+                              : "block"
+                          }`}>
+                        <RiChatSmile3Line />
+                        </p>
+
                         <p
-                          className={`flex py-2 px-4 rounded-lg text-lg text-gray-700 `}
+                          className={`flex  rounded-lg text-lg `}
                         >
                           {value.text}
                         </p>

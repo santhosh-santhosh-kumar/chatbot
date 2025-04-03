@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-    <div className='flex justify-center items-center px-6'>
+    <div className='flex justify-center  items-center lg:px-6'>
       <User />
       {/* <Live /> */}
     </div>

@@ -82,26 +82,26 @@ const User = () => {
           </div>
           <div
             ref={chatContainerRef}
-            className={`${ismode ? "bg-black" :"bg-white"} py-4 lg:h-96 h-[540px] overflow-auto`}
+            className={`${ismode ? "bg-black" :"bg-white"}  py-4 lg:h-96 h-[540px] overflow-auto`}
           >
             {messageDetails.map((value) => {
               return (
                 <>
                   <div className="">
-                    <div className="flex items-center ">
+                    <div className={`px-4 flex gap-2 ${
+                            value.status == "user"
+                              ? "flex-row-reverse justify-end "
+                              : "flex justify-start "
+                          } inline-block  items-center mt-6`} >
                       <p
-                        className={` p-2 w-auto rounded-lg text-lg text-gray-700 flex ${
+                        className={` p-2 w-auto rounded-lg text-lg text-gray-700 ${
                           value.status == "user"
-                            ? "justify-end "
-                            : "justify-start "
-                        } inline-block`}
+                            ? " bg-slate-500"
+                            : " bg-gray-200"
+                        }`}
                       >
                         <p
-                          className={`py-2 px-4 rounded-lg text-lg text-gray-700 flex ${
-                            value.status == "user"
-                              ? "justify-start bg-slate-500"
-                              : "justify-end bg-gray-200"
-                          } inline-block`}
+                          className={`flex py-2 px-4 rounded-lg text-lg text-gray-700 `}
                         >
                           {value.text}
                         </p>

@@ -66,7 +66,7 @@ const User = () => {
       <div className="w-96  lg:rounded-t-lg  shadow-xl lg:mt-10">
         <div className="">
           <div className="flex justify-between items-center bg-violet-600 px-4">
-            <div className="bg-violet-600 flex items-center gap-4 lg:px-2  py-4 text-white text-2xl lg:rounded-t-lg ">
+            <div className={`${ismode ? "text-gray-800" :"text-white"} bg-violet-600 flex items-center gap-4 lg:px-2  py-4 text-white text-2xl lg:rounded-t-lg`}>
               <FaRocketchat size={30}/>
               <p className="font-bold">Chatbot</p>
             </div>
@@ -75,7 +75,7 @@ const User = () => {
            <div className={`${ismode ? "hidden" : "block"} text-3xl text-white`} onClick={()=>setIsMode(true)}>
               <MdOutlineDarkMode />
             </div>
-            <div className={`${ismode ? "block" : "hidden"} text-3xl text-white`} onClick={()=>setIsMode(false)}>
+            <div className={`${ismode ? "block" : "hidden"} text-3xl text-gray-800`} onClick={()=>setIsMode(false)}>
             <MdDarkMode />
             </div>
            </div>
@@ -146,7 +146,7 @@ const User = () => {
               }}
               className="border  flex items-center justify-end w-full pl-2 py-3 text-xl resize-none overflow-hidden rounded-lg"
             />
-            <div className="flex justify-center items-center bg-violet-600 text-white  rounded-lg">
+            <div className={`${ismode ? "text-black" : "text-white"} text-3xl  flex justify-center items-center bg-violet-600  rounded-lg`}>
               <button type="submit" className="text-xl p-4 ">
                 <IoSend />
               </button>

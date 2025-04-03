@@ -179,7 +179,7 @@ const handleSend=async ()=>{
                 (listening ? SpeechRecognition.stopListening() : SpeechRecognition.startListening({ continuous: true }))
                 setSend(true)
               }}
-              className="p-3 bg-blue-500 text-white rounded-lg flex items-center gap-2"
+              className={`${ismode ? "text-white" : "text-black"} p-3   rounded-lg flex items-center gap-2` }
             >
               <AiOutlineAudio size={25} className={`${listening ? "block" :"hidden"}`} />
               <AiOutlineAudioMuted size={25} className={`${listening ? "hidden" :"block"}`} />

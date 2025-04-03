@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { nanoid } from "@reduxjs/toolkit";
 const API_URL = import.meta.env.VITE_API_URI;
 
 console.log(API_URL);
@@ -63,8 +64,11 @@ const chatboxSlice = createSlice({
       })
       .addCase(postChat.fulfilled, (state, action) => {
             console.log(action.payload.user,action.payload.ai)
-            state.messages.push(action.payload.user);
-            state.messages.push(action.payload.ai); 
+            state.messages.push({...action.payload.user,id:nanoid()});
+            state.messages.push({...action.payload.ai,id:nanoid()});
+            // const id = state.messages.length + 1;
+            // state.messages.push({ id, text: action.payload.user, status: "user" });
+            // state.messages.push({ id: id + 1, text: action.payload.ai, status: "bot" });
         state.status = "succeeded";
       })
       .addCase(postChat.rejected, (state, action) => {

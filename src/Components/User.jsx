@@ -40,11 +40,11 @@ const User = () => {
     };   
     if (!isPlaying) {
       localStorage.removeItem("playingId");
+      window.speechSynthesis.cancel();
       window.speechSynthesis.speak(value);
       setIsPlaying(id)
     } else {
       window.speechSynthesis.cancel();
-      setPlay(!play);
       setIsPlaying("")
     }
   };

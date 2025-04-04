@@ -59,7 +59,7 @@ const User = () => {
     if (!isPlaying) {
       localStorage.removeItem("playingId");
       window.speechSynthesis.cancel();
-      const voice=window.speechSynthesis.getVoices();
+      window.speechSynthesis.speak(value);
       setIsPlaying(id);
     } else {
       window.speechSynthesis.cancel();

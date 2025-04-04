@@ -137,7 +137,7 @@ const handleSend=async ()=>{
                         <p
                           className={`${
                             isPlaying == value.id ? "hidden" : "block"
-                          }`}
+                          } cursor-pointer`}
                           onClick={() => handlePlay(value.text, value.id)}
                         >
                           <FaPlay className="text-gray-700" />
@@ -145,7 +145,7 @@ const handleSend=async ()=>{
                         <p
                           className={`${
                             isPlaying == value.id ? "block" : "hidden"
-                          }`}
+                          } cursor-pointer`}
                           onClick={() => handlePlay(value.text, value.id)}
                         >
                           <FaPause className="text-gray-700" />
@@ -181,8 +181,8 @@ const handleSend=async ()=>{
               }}
               className={`${ismode ? "text-white" : "text-black"} p-3   rounded-lg flex items-center gap-2` }
             >
-              <AiOutlineAudio size={25} className={`${listening ? "block" :"hidden"}`} />
-              <AiOutlineAudioMuted size={25} className={`${listening ? "hidden" :"block"}`} />
+              <AiOutlineAudio size={25} className={`${listening ? "block" :"hidden"} cursor-pointer`} />
+              <AiOutlineAudioMuted size={25} className={`${listening ? "hidden" :"block"} cursor-pointer`} />
 
         
             </div>

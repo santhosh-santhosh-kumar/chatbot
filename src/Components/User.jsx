@@ -145,7 +145,7 @@ const handleSend=async ()=>{
                           } cursor-pointer`}
                           onClick={() => handlePlay(value.text, value.id)}
                         >
-                          <FaPlay className="text-gray-700" />
+                          <FaPlay className="text-gray-400" />
                         </p>
                         <p
                           className={`${
@@ -153,7 +153,7 @@ const handleSend=async ()=>{
                           } cursor-pointer`}
                           onClick={() => handlePlay(value.text, value.id)}
                         >
-                          <FaPause className="text-gray-700" />
+                          <FaPause className="text-gray-400" />
                         </p>
                       </div>
                     </div>

@@ -101,6 +101,10 @@ const handleSend=async ()=>{
            </div>
           </div>
           <div
+           style={{
+            scrollbarWidth: "none",          
+            msOverflowStyle: "none",      
+          }}
             ref={chatContainerRef}
             className={`${ismode ? "bg-black" :"bg-white"}  py-4 lg:h-96 h-[540px] overflow-auto`}
           >

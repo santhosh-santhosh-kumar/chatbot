@@ -12,6 +12,7 @@ import { RiChatSmile3Line } from "react-icons/ri";
 import { AiOutlineAudio } from "react-icons/ai";
 import { AiOutlineAudioMuted } from "react-icons/ai";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { AiFillWechat } from "react-icons/ai";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -91,10 +92,10 @@ const handleSend=async ()=>{
             </div>
 
            <div>
-           <div className={`${ismode ? "hidden" : "block"} text-3xl text-white`} onClick={()=>setIsMode(true)}>
+           <div className={`${ismode ? "hidden" : "block"} text-3xl text-white cursor-pointer`} onClick={()=>setIsMode(true)}>
               <MdOutlineDarkMode />
             </div>
-            <div className={`${ismode ? "block" : "hidden"} text-3xl text-gray-800`} onClick={()=>setIsMode(false)}>
+            <div className={`${ismode ? "block" : "hidden"} text-3xl text-gray-800 cursor-pointer`} onClick={()=>setIsMode(false)}>
             <MdDarkMode />
             </div>
            </div>
@@ -123,8 +124,8 @@ const handleSend=async ()=>{
                             value.status == "user"
                               ? "hidden"
                               : "block"
-                          }`}>
-                        <RiChatSmile3Line />
+                          } text-violet-800`}>
+                        <AiFillWechat size={30}/>
                         </p>
 
                         <p
